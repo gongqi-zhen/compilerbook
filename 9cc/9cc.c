@@ -123,6 +123,29 @@ Token *tokenize() {
   return head.next;
 }
 
+//
+// Parser
+//
+
+typedef enum {
+  ND_ADD, // +
+  ND_SUB, // -
+  ND_MUL, // *
+  ND_DIV, // /
+  ND_NUM, // Integer
+} NodeKind;
+
+// AST node type
+typedef struct Node Node;
+struct Node {
+  NodeKind kind;  // Node kind
+  Node *lhs;      // Left-hand side
+  Node *rhs;      // Right-hand side
+  int val;        // Used if kind == ND_NUM
+};
+
+
+
 int main(int argc, char **argv) {
   if (argc != 2) {
     fprintf(stderr, "引数の個数が正しくありません\n");
