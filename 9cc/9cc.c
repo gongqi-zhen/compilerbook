@@ -20,6 +20,7 @@ struct Token {
   Token *next;    // 次の入力トークン
   int val;        // kindがTK_NUMの場合、その数値
   char *str;      // トークン文字列
+  int len;        // Token length
 };
 
 // Input program
@@ -52,10 +53,11 @@ void error_at(char *loc, char *fmt, ...) {
   exit(1);
 }
 
-// 次のトークンが期待している記号のときには、トークンを１つ読み進めて
-// 真を返す。それ以外の場合には偽を返す。
-bool consume(char op) {
-  if (token->kind != TK_RESERVED || token->str[0] != op)
+// Consumes the current token if it matches `op`.
+bool consume(char *op) {
+  if (token->kind != TK_RESERVED ||
+      strlen(op) != token->len ||
+      memcmp(token->str, op, token->len))
     return false;
   token = token->next;
   return true;
