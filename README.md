@@ -27,7 +27,7 @@ docker run --rm -it -v $HOME/github/compilerbook/9cc:/9cc -w /9cc compilerbook
 - 文法規則を定義するルールを学ぶ
 - 文法規則を定義するルールをもとに、パーサを書くテクニックを学ぶ
 
-Next:新しい文法
+Next: 分割コンパイルとリンク
 
 目標: 
 まずは、ステップ12までを読み切り、復習して理解を深めたい。：w
